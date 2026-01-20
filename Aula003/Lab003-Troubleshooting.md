@@ -84,6 +84,52 @@ docker logs nome-container
 docker run -it minha-imagem /bin/bash
 ```
 
----
 
-**Desenvolvido por:** Professor Alexandre Tavares - UniFAAT
+### 5. "Port already in use"
+
+**Problema:** Porta 8080 ou 8081 já está sendo usada  
+**Solução:** Alterar as portas no docker-compose.yml
+
+```yaml
+ports:
+  - "8082:80"  # Usar porta diferente
+```
+
+### 6. "YAML parse error"
+
+**Problema:** Erro de sintaxe no arquivo YAML  
+**Solução:** Verificar identação e sintaxe
+
+```bash
+# Validar sintaxe do YAML
+docker compose config
+```
+
+### 7. Containers não se comunicam
+
+**Problema:** Ping/curl entre containers falha  
+**Solução:** Verificar se estão na mesma rede
+
+```bash
+# Verificar redes dos containers
+docker inspect web-frontend | grep NetworkMode
+docker inspect app-backend | grep NetworkMode
+```
+
+### 8. Volume não persiste dados
+
+**Problema:** Dados são perdidos ao recriar containers  
+**Solução:** Verificar configuração de volumes
+
+```bash
+# Listar volumes
+docker volume ls
+
+# Inspecionar volume específico
+docker volume inspect aula03_app-data
+```
+
+> [!NOTE]
+> **Desenvolvido por:** Professor Alexandre Tavares - UniFAAT  
+> **Versão:** 1.0 - Semestre 2026.1  
+> **Última atualização:** Janeiro 2025
