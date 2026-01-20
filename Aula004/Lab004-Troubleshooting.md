@@ -3,9 +3,7 @@
 **Lab:** 004 - Docker Compose  
 **Foco:** Multi-container, orquestração, networks
 
----
-
-## 🚨 Problemas Mais Comuns
+## Problemas Mais Comuns
 
 ### 1. Docker Compose não Encontrado
 
@@ -85,6 +83,39 @@ tree .
 #   dockerfile: Dockerfile
 ```
 
----
+## Troubleshooting Comum
 
-**Desenvolvido por:** Professor Alexandre Tavares - UniFAAT
+### "502 Bad Gateway"
+
+**Problema:** Nginx não consegue conectar aos backends  
+**Solução:** Verificar se containers app1 e app2 estão rodando
+
+```bash
+docker compose ps
+docker compose logs app1 app2
+```
+
+### "upstream not found"
+
+**Problema:** Erro na configuração do nginx.conf  
+**Solução:** Verificar sintaxe e nomes dos serviços
+
+```bash
+# Testar configuração
+docker exec nginx-proxy nginx -t
+```
+
+### Balanceamento não funciona
+
+**Problema:** Sempre o mesmo servidor responde  
+**Solução:** Verificar algoritmo e configuração upstream
+
+```bash
+# Verificar configuração carregada
+docker exec nginx-proxy cat /etc/nginx/nginx.conf
+```
+
+> [!NOTE]
+> **Desenvolvido por:** Professor Alexandre Tavares - UniFAAT  
+> **Versão:** 1.0 - Semestre 2026.1  
+> **Última atualização:** Janeiro 2025
